@@ -24,6 +24,7 @@ body {
   color: #000;
   overflow-x: hidden;
   width: 100%;
+  position: relative;
 }
 
 a {
@@ -92,7 +93,7 @@ header::after {
   animation: SlideFromTop 2s;
 }
 
-.nav i {
+.nav i:nth-child(3) {
   display: none;
 }
 
@@ -101,12 +102,14 @@ header::after {
 }
 
 .nav ul,
-.footer ul {
+.footer ul,
+.sidebar ul {
   display: flex;
   gap: 20px;
 }
 
-.nav ul li a {
+.nav ul li a,
+.sidebar ul li a {
   font-family: var(--radio-canada-big);
   font-size: 16px;
   font-weight: 500;
@@ -114,6 +117,38 @@ header::after {
 
 .nav ul li a:hover {
   opacity: 0.9;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#fff4df 20%, #a8d3ff 80%);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 200px;
+  bottom: 0;
+  padding: 15px;
+  padding-left: 25px;
+  z-index: 1000;
+  transition: right 0.5s ease-in-out;
+}
+
+.active {
+  right: 0;
+}
+
+.sidebar ul {
+  flex-direction: column;
+  position: relative;
+}
+
+.sidebar ul i:nth-child(6) {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  font-size: 22px;
 }
 
 /* Hero Section */
@@ -573,15 +608,6 @@ header::after {
 /* Media Queries */
 
 @media (max-width: 1000px) {
-  header .nav ul {
-    display: none;
-  }
-
-  header .nav i {
-    display: block;
-    font-size: 22px;
-  }
-
   .features .features-grid,
   .values .values-grid,
   .case-study .case-study-grid,
@@ -596,7 +622,8 @@ header::after {
   }
 
   .features .btn,
-  .case-study .btn {
+  .case-study .btn,
+  .cta .btn {
     display: block;
     width: 100%;
     margin-top: 40px;
@@ -668,7 +695,18 @@ header::after {
   }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 700px) {
+  header .nav ul {
+    display: none;
+  }
+
+  .nav i:nth-child(3) {
+    display: block;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 500px) {
   .hero .hero-content .hero-heading {
     font-size: 38px;
     letter-spacing: -1px;
@@ -693,7 +731,7 @@ header::after {
     top: 0;
     left: 0;
     right: 0;
-    height: 650px;
+    height: 675px;
     z-index: -1;
 
     background: linear-gradient(#a8d3ff 0%, #fff4df 100%);
@@ -711,5 +749,6 @@ header::after {
 
   .cta h2 {
     font-size: 30px;
+    margin-bottom: -10px;
   }
 }
